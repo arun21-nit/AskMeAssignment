@@ -1,4 +1,6 @@
-package com.askme.arun.myapplication;
+package com.askme.arun.myapplication.controler;
+
+import com.askme.arun.myapplication.model.PriceList;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

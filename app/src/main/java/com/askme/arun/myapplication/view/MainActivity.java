@@ -1,4 +1,4 @@
-package com.askme.arun.myapplication;
+package com.askme.arun.myapplication.view;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -11,8 +11,13 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.askme.arun.myapplication.R;
+import com.askme.arun.myapplication.controler.PriceListAPICall;
+import com.askme.arun.myapplication.controler.RequestInterface;
+import com.askme.arun.myapplication.model.Item;
+import com.askme.arun.myapplication.model.PriceList;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -54,38 +59,9 @@ public class MainActivity extends AppCompatActivity {
         progress.setTitle("Loading");
         progress.setMessage("Please wait while we are fetching data...");
         progress.show();
-        loadJSON();
+        PriceListAPICall.loadJSON(progress, data, adapter, recyclerView, this);
     }
 
-    //Http Call using Retrofit
-    private void loadJSON() {
-        Retrofit retrofit = new Retrofit.Builder()
-                //Publicly hosted json file on myjson free server
-                .baseUrl("https://api.myjson.com")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        RequestInterface request = retrofit.create(RequestInterface.class);
-        Call<PriceList> call = request.getJSON();
-        call.enqueue(new Callback<PriceList>() {
-            @Override
-            public void onResponse(Call<PriceList> call, Response<PriceList> response) {
-                progress.dismiss();
-                PriceList jsonResponse = response.body();
-                data = jsonResponse.getResultSet().getItems();
-                //setting data to adaptor
-                adapter = new DataAdapter(data);
-                //Setting adaptor to recyclerView
-                recyclerView.setAdapter(adapter);
-            }
-
-            @Override
-            public void onFailure(Call<PriceList> call, Throwable t) {
-                progress.dismiss();
-                Toast.makeText(MainActivity.this,t.getLocalizedMessage(),Toast.LENGTH_SHORT).show();
-                Log.d("Error", t.getMessage());
-            }
-        });
-    }
 
     //Network Available check
     private boolean isNetworkAvailable() {

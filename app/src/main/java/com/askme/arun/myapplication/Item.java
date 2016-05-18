@@ -23,7 +23,7 @@ public class Item {
      * @return The Title
      */
     public String getTitle() {
-        if (Title != null && !Title.isEmpty())
+        if (Title != null && !Title.isEmpty() && !Title.equalsIgnoreCase("null"))
             return Title;
         else return "N/A";
     }
@@ -39,7 +39,7 @@ public class Item {
      * @return The Summary
      */
     public String getSummary() {
-        if (Summary != null && !Summary.isEmpty())
+        if (Summary != null && !Summary.isEmpty() && !Summary.equalsIgnoreCase("null"))
             return Summary;
         else return "N/A";
     }
@@ -55,7 +55,7 @@ public class Item {
      * @return The Price
      */
     public String getPrice() {
-        if (Price != null && !Price.isEmpty())
+        if (Price != null && !Price.isEmpty() && !Price.equalsIgnoreCase("null"))
             return Price;
         else return "N/A";
     }

@@ -1,9 +1,9 @@
 package com.askme.arun.myapplication.model;
 
-import java.util.ArrayList;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import java.util.ArrayList;
 
 /**
  * Created by arun on 18/5/16.

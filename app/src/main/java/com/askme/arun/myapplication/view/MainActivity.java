@@ -4,26 +4,17 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.askme.arun.myapplication.R;
 import com.askme.arun.myapplication.controler.PriceListAPICall;
-import com.askme.arun.myapplication.controler.RequestInterface;
 import com.askme.arun.myapplication.model.Item;
-import com.askme.arun.myapplication.model.PriceList;
 
 import java.util.ArrayList;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by Arun on 18/5/16.
@@ -47,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Please connect to internet and try again", Toast.LENGTH_LONG).show();
             finish();
         }
-
     }
 
     private void initViews() {

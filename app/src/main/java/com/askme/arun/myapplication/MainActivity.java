@@ -57,8 +57,10 @@ public class MainActivity extends AppCompatActivity {
         loadJSON();
     }
 
+    //Http Call using Retrofit
     private void loadJSON() {
         Retrofit retrofit = new Retrofit.Builder()
+                //Publicly hosted json file on myjson free server
                 .baseUrl("https://api.myjson.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
@@ -70,18 +72,22 @@ public class MainActivity extends AppCompatActivity {
                 progress.dismiss();
                 PriceList jsonResponse = response.body();
                 data = jsonResponse.getResultSet().getItems();
+                //setting data to adaptor
                 adapter = new DataAdapter(data);
+                //Setting adaptor to recyclerView
                 recyclerView.setAdapter(adapter);
             }
 
             @Override
             public void onFailure(Call<PriceList> call, Throwable t) {
                 progress.dismiss();
+                Toast.makeText(MainActivity.this,t.getLocalizedMessage(),Toast.LENGTH_SHORT).show();
                 Log.d("Error", t.getMessage());
             }
         });
     }
 
+    //Network Available check
     private boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager
                 = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);

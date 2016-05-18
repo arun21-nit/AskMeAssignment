@@ -14,10 +14,10 @@ import java.util.ArrayList;
  */
 
 public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
-    private ArrayList<Item> android;
+    private ArrayList<Item> itemList;
 
-    public DataAdapter(ArrayList<Item> android) {
-        this.android = android;
+    public DataAdapter(ArrayList<Item> itemList) {
+        this.itemList = itemList;
     }
 
     @Override
@@ -29,14 +29,14 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(DataAdapter.ViewHolder viewHolder, int i) {
 
-        viewHolder.tv_name.setText("Name : " + android.get(i).getTitle());
-        viewHolder.tv_version.setText("Summary : " + android.get(i).getSummary());
-        viewHolder.tv_api_level.setText("Price : \u20B9 " + android.get(i).getPrice());
+        viewHolder.tv_name.setText("Name : " + itemList.get(i).getTitle());
+        viewHolder.tv_version.setText("Summary : " + itemList.get(i).getSummary());
+        viewHolder.tv_api_level.setText("Price : \u20B9 " + itemList.get(i).getPrice());
     }
 
     @Override
     public int getItemCount() {
-        return android.size();
+        return itemList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
